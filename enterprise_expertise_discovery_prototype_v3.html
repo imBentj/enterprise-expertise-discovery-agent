@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enterprise Expertise Discovery Agent — Prototype v3</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:#17263a;font:15px Arial,sans-serif}.app{display:grid;grid-template-columns:220px 1fr;min-height:100vh}.side{background:#142638;color:#eaf1f7;padding:24px 18px}.brand{font-weight:bold;font-size:17px;line-height:1.4;margin-bottom:32px}.nav{padding:12px;border-radius:8px;background:#294356;font-size:13px}.note{margin-top:28px;color:#b8c8d7;font-size:12px;line-height:1.5}main{max-width:1200px;padding:30px clamp(16px,4vw,48px);width:100%;margin:auto}.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#64748b;font-size:12px}.pill{padding:7px 10px;border-radius:20px;background:#e5f4ef;color:#236b5d}.eyebrow{margin-top:32px;color:#176b67;text-transform:uppercase;font-size:11px;letter-spacing:1.4px;font-weight:bold}h1{font-size:clamp(28px,4vw,40px);margin:10px 0}p{line-height:1.55;color:#64748b}.search,.card,.panel{background:white;border:1px solid #dfe6ee;border-radius:14px;padding:18px}.search{margin:24px 0}.search label{font-weight:bold;font-size:13px;display:block;margin-bottom:10px}.searchrow{display:flex;gap:10px}textarea{font:14px Arial;line-height:1.5;resize:vertical;min-height:78px;flex:1;padding:12px;border:1px solid #cbd5e1;border-radius:9px}button{cursor:pointer;border:0;border-radius:9px;background:#176b67;color:white;font-weight:bold;padding:12px 16px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px;align-items:center;font-size:11px;color:#64748b}.chips button{background:#f7fafc;border:1px solid #dfe6ee;color:#40536a;font-size:11px;padding:8px 10px;font-weight:normal}.summary{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.summary h2{font-size:19px;margin-bottom:3px}.summary p{font-size:12px;margin-top:4px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 255px;gap:14px;margin-top:14px}.results{display:grid;gap:12px}.person{background:white;border:1px solid #dfe6ee;border-radius:13px;padding:16px}.head{display:flex;gap:11px;align-items:flex-start}.avatar{width:42px;height:42px;border-radius:11px;background:#e7f0f4;display:grid;place-items:center;font-weight:bold;color:#31556d}.name{font-weight:bold;font-size:14px;margin:2px 0 5px}.role{font-size:11px;color:#64748b}.score{margin-left:auto;text-align:center;background:#e5f4ef;color:#176b67;border-radius:9px;padding:8px;min-width:65px}.score b{display:block;font-size:18px}.score small{font-size:9px}.tags{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}.tag{font-size:10px;border-radius:5px;background:#eef2f6;padding:6px 8px;color:#46596d}.why{font-size:12px;line-height:1.6;color:#46566a}.why b{color:#17263a}details{border-top:1px solid #edf0f4;padding-top:10px;margin-top:10px;font-size:11px}summary{cursor:pointer;font-weight:bold;color:#315f76}details p{font-size:11px}.panel{margin-bottom:12px}.panel h3{font-size:13px;margin:0 0 12px}.metric{display:flex;justify-content:space-between;border-bottom:1px solid #edf0f4;padding:10px 0;font-size:11px;color:#64748b}.metric b{color:#26364a}.warning{background:#fff7df;border:1px solid #f0e1ac;color:#76571c;padding:13px;border-radius:10px;font-size:11px;line-height:1.55;margin-bottom:12px}.warning b{display:block;margin-bottom:5px}.footer{font-size:10px;color:#7c8998;line-height:1.5;margin-top:22px}.empty{padding:22px;text-align:center;color:#64748b;border:1px dashed #cbd5e1;border-radius:12px;background:white}select{padding:8px;border:1px solid #dfe6ee;border-radius:8px;background:white}
+@media(max-width:800px){.app{grid-template-columns:1fr}.side{display:none}main{padding:18px 12px}.layout{grid-template-columns:1fr}.searchrow{flex-direction:column}}
+</style>
+<div class="app"><aside class="side"><div class="brand">✳ Enterprise<br>Expertise Agent</div><div class="nav">⌕ &nbsp; Find expertise</div><div class="note">Concept prototype using fictional profiles. Not connected to any company directory or internal system.</div></aside>
+<main><div class="top"><span>Innovation Lab / Enterprise Knowledge</span><span class="pill">● Synthetic data · Evaluation v3</span></div>
+<div class="eyebrow">Find knowledge. Connect expertise.</div><h1>Who can help solve your challenge?</h1><p>Describe a business or technical need in plain English. Discover people with relevant skills and project experience, with evidence explaining each recommendation.</p>
+<section class="panel" style="margin-top:22px">
+<h3>Evaluation lab · Manual test suite</h3>
+<p style="font-size:12px;margin:0 0 12px">Use the same scenarios repeatedly to check relevance, evidence, gap handling, and whether the agent refuses unsupported claims. This panel loads a test into the search box; it does not calculate AI accuracy.</p>
+<div class="chips" id="test-suite">
+<button data-test="t1">T1 · Complementary team</button>
+<button data-test="t2">T2 · Strict production requirement</button>
+<button data-test="t3">T3 · Changed priorities</button>
+<button data-test="t4">T4 · Unsupported deployment claim</button>
+<button data-test="t5">T5 · Retail automation</button>
+<button data-test="t6">T6 · Ambiguous request</button>
+</div>
+<div id="test-details" class="metric" style="display:block;margin-top:10px">Choose a test to see its evaluation goal. Record observations separately; results are not automatically scored.</div>
+</section>
+<section class="search"><label for="query">What expertise are you looking for?</label><div class="searchrow"><textarea id="query">Find someone with Oracle Fusion procurement knowledge and experience using AI to automate enterprise workflows.</textarea><button id="go">Find experts →</button></div><div class="chips">Try a sample:
+<button data-q="Find someone with Oracle Fusion procurement and Procure-to-Pay experience.">Oracle procurement</button>
+<button data-q="Find someone who has built an LLM knowledge assistant with document retrieval and source references.">LLM knowledge assistant</button>
+<button data-q="Find an expert in recurring IT incidents, root cause analysis, and operational dashboards.">Incident management</button>
+<button data-q="Find someone with documented experience deploying an AI agent specifically for Oracle procurement.">No exact match</button></div></section>
+<div class="summary"><div><h2 id="title">Recommended experts</h2><p id="subtitle">Ranked against your request · Evidence from sample profiles</p></div><label style="font-size:11px;color:#64748b">Sort <select id="sort"><option value="relevance">Relevance</option><option value="seniority">Experience level</option></select></label></div>
+<div id="team-recommendation" class="panel" style="display:none;margin-top:14px"></div><div class="layout"><section class="results" id="results"></section><aside><section class="panel"><h3>Search transparency</h3><div class="metric"><span>Profiles in sample directory</span><b>12</b></div><div class="metric"><span>Evidence explanations</span><b>Rule-based</b></div><div class="metric"><span>Live company connection</span><b>No</b></div><div class="metric"><span>Scores validated for hiring</span><b>No</b></div></section><section class="panel"><h3>How matching works</h3><div class="metric">1. Understand the request</div><div class="metric">2. Compare skills and project evidence</div><div class="metric">3. Rank profiles and show gaps</div></section><div class="warning"><b>Human review required</b>Recommendations support discovery only. They do not verify current availability, proficiency, or staffing suitability.</div></aside></div>
+<div class="footer">Prototype note: this is a rule-based interface demonstration, not a live AI agent. Scores are illustrative, not probabilities or validated hiring measures. A later version needs model-backed query understanding, approved data access, semantic retrieval, evaluation, access controls, and privacy review.</div></main></div>
+<script>
+const P=[
+{id:"E001",name:"Asha Menon",role:"Oracle Fusion Functional Consultant",skills:["Oracle Fusion Procurement","Procure-to-Pay","Requirements analysis","Process mapping"],industry:["Enterprise IT","Manufacturing"],project:"Supported a procurement process improvement project documenting requisition, purchase order, and invoice workflows.",evidence:"Created process maps and functional documentation for procurement workflows; helped identify manual handoffs.",level:"Intermediate"},
+{id:"E002",name:"Rahul Shah",role:"AI Solutions Engineer",skills:["Python","LLM applications","Retrieval-augmented generation","Prompt evaluation"],industry:["Enterprise IT","Financial Services"],project:"Built a knowledge assistant that retrieved answers from approved internal technical documents.",evidence:"Implemented document retrieval, source references, and a test set for checking answer relevance.",level:"Senior"},
+{id:"E003",name:"Meera Nair",role:"IT Service Management Analyst",skills:["Incident management","Root cause analysis","Splunk","Operational reporting"],industry:["Telecom","Enterprise IT"],project:"Analyzed recurring service incidents and created dashboards for incident trends and SLA monitoring.",evidence:"Reviewed recurring incidents, grouped common failure patterns, and documented recommended troubleshooting steps.",level:"Intermediate"},
+{id:"E004",name:"Arjun Rao",role:"AI Automation Consultant",skills:["Workflow automation","LLM tools","API integration","Human-in-the-loop review"],industry:["Retail","Enterprise IT"],project:"Prototyped an assistant that classified service requests and prepared draft responses for staff review.",evidence:"Designed a review step for AI-generated responses and measured classification quality on sample requests.",level:"Senior"},
+{id:"E005",name:"Priya Das",role:"Data Analyst",skills:["SQL","Power BI","Python","KPI design","Data cleaning"],industry:["Consumer Goods","Retail"],project:"Built a sales and inventory dashboard for regional business teams.",evidence:"Prepared KPI definitions, cleaned source data, and built interactive reports for inventory trends.",level:"Intermediate"},
+{id:"E006",name:"Vikram Iyer",role:"Cloud Architect",skills:["Azure","AWS","Cloud migration","Solution architecture","Security design"],industry:["High-tech","Financial Services"],project:"Designed a migration approach for enterprise applications moving to cloud infrastructure.",evidence:"Produced target architecture diagrams and documented security and migration considerations.",level:"Senior"},
+{id:"E007",name:"Neha Kulkarni",role:"Oracle ERP Reporting Consultant",skills:["Oracle Fusion","OTBI","BI reporting","SQL","Business process analysis"],industry:["Manufacturing","Enterprise IT"],project:"Developed operational reports for procurement and finance users.",evidence:"Mapped reporting requirements to business questions and documented report validation checks.",level:"Intermediate"},
+{id:"E008",name:"Karan Patel",role:"Knowledge Management Specialist",skills:["Enterprise search","Taxonomy design","Document management","Knowledge governance"],industry:["Enterprise IT","Telecom"],project:"Organized internal support documents and improved tagging for faster retrieval.",evidence:"Designed metadata fields and content ownership rules to improve search consistency.",level:"Intermediate"},
+{id:"E009",name:"Sara Thomas",role:"Software Engineer",skills:["Python","REST APIs","Testing","Backend development"],industry:["High-tech","Retail"],project:"Built API services and automated regression tests for a customer-facing application.",evidence:"Implemented API endpoints and test cases; no documented enterprise AI project experience.",level:"Intermediate"},
+{id:"E010",name:"Dev Malhotra",role:"Retail Operations Consultant",skills:["Inventory planning","Store operations","Process improvement","Stakeholder workshops"],industry:["Retail","Consumer Goods"],project:"Analyzed stockout patterns and recommended changes to replenishment workflows.",evidence:"Mapped store replenishment processes and documented operational bottlenecks.",level:"Senior"},
+{id:"E011",name:"Ishita Roy",role:"Machine Learning Engineer",skills:["Python","Classification models","Model evaluation","Feature engineering"],industry:["Gaming","Consumer Goods"],project:"Built a classification model and compared performance using precision, recall, and error analysis.",evidence:"Prepared labeled test data and documented model performance and known failure cases.",level:"Senior"},
+{id:"E012",name:"Nikhil Fernandes",role:"Telecom Domain Consultant",skills:["Telecom operations","Incident workflows","Business analysis","Process mapping"],industry:["Telecom","Enterprise IT"],project:"Helped document service assurance workflows and operational escalation paths.",evidence:"Mapped incident handoffs and identified knowledge gaps in escalation documentation.",level:"Intermediate"}];
+const norm=s=>s.toLowerCase().replace(/[^a-z0-9\s-]/g," ").replace(/\s+/g," ").trim();
+function score(p,q){let qn=norm(q),txt=norm([...p.skills,p.project,p.evidence,...p.industry,p.role].join(" "));let words=[...new Set(qn.split(" ").filter(x=>x.length>3&&!["find","someone","with","that","have","from","using","experience","experienced","need","looking","oracle","procurement","assistant","enterprise"].includes(x)))];let hits=words.filter(w=>txt.includes(w)).length;let s=words.length?Math.round(hits/words.length*65):0;
+if(qn.includes("oracle")&&qn.includes("procurement")&&p.id==="E001")s+=35;
+if((qn.includes("llm")||qn.includes("knowledge assistant")||qn.includes("retrieval"))&&p.id==="E002")s+=40;
+if(qn.includes("incident")&&p.id==="E003")s+=40;
+if(qn.includes("automation")&&qn.includes("ai")&&p.id==="E004")s+=30;
+if(qn.includes("otbi")&&p.id==="E007")s+=35;
+if(qn.includes("deploy")&&qn.includes("agent")&&qn.includes("oracle")&&qn.includes("procurement"))s=0;
+return Math.min(98,s)}
+function reason(p,q){let n=norm(q),a=[];if(n.includes("oracle")&&p.id==="E001")a.push("Profile documents Oracle Fusion procurement and Procure-to-Pay workflows.");if((n.includes("llm")||n.includes("knowledge assistant")||n.includes("retrieval"))&&p.id==="E002")a.push("Project history documents a knowledge assistant with document retrieval and source references.");if(n.includes("incident")&&p.id==="E003")a.push("Project history documents recurring incident analysis, root-cause patterns, and operational reporting.");if(n.includes("automation")&&p.id==="E004")a.push("Project history documents workflow automation with staff review of AI-generated responses.");if((n.includes("oracle")||n.includes("procurement")||n.includes("otbi"))&&p.id==="E007")a.push("Profile documents Oracle reporting and procurement/finance reporting requirements.");if(!a.length)a.push("Some documented skills or project terms overlap with the request; review the evidence before deciding.");if(n.includes("oracle")&&n.includes("procurement")&&n.includes("ai")&&p.id==="E001")a.push("Gap: no AI automation project is documented.");if(n.includes("oracle")&&n.includes("procurement")&&n.includes("ai")&&p.id==="E004")a.push("Gap: no Oracle procurement experience is documented.");return a.join(" ")}
+
+function getEvidenceAndGap(p,q){
+  const n=norm(q);
+  let evidence=[], gaps=[];
+  if(p.id==="E001"){
+    evidence.push("Explicit Oracle Fusion Procurement and Procure-to-Pay skills.");
+    evidence.push("Project evidence covers requisition, purchase-order, and invoice workflows.");
+    if(n.includes("ai")||n.includes("automation")) gaps.push("AI/LLM automation delivery is not documented.");
+  }
+  if(p.id==="E004"){
+    evidence.push("Workflow automation, LLM tools, API integration, and human review are documented.");
+    evidence.push("Project describes a service-request assistant reviewed by staff.");
+    if(n.includes("oracle")||n.includes("procurement")) gaps.push("Oracle Fusion and procurement experience are not documented.");
+  }
+  if(p.id==="E002"){
+    evidence.push("LLM applications, retrieval, source references, and answer-relevance testing are documented.");
+    if(n.includes("oracle")||n.includes("procurement")) gaps.push("Oracle procurement and transactional workflow integration are not documented.");
+    if(n.includes("automation")) gaps.push("End-to-end workflow automation is not explicitly documented.");
+  }
+  if(p.id==="E003" && n.includes("incident")) evidence.push("Project evidence covers recurring incident analysis, failure patterns, and operational dashboards.");
+  if(p.id==="E007" && (n.includes("oracle")||n.includes("procurement")||n.includes("otbi")||n.includes("reporting"))){
+    evidence.push("Oracle Fusion, OTBI, and procurement/finance reporting are documented.");
+    if(n.includes("ai")||n.includes("automation")) gaps.push("AI workflow implementation is not documented.");
+  }
+  if(p.id==="E005" && (n.includes("dashboard")||n.includes("power bi")||n.includes("kpi"))) evidence.push("Power BI, KPI design, and reporting are documented.");
+  if(p.id==="E008" && (n.includes("knowledge")||n.includes("search")||n.includes("document"))) evidence.push("Enterprise search, document management, and knowledge governance are documented.");
+  if(p.id==="E009" && (n.includes("api")||n.includes("backend")||n.includes("testing"))) evidence.push("REST API development and automated testing are documented.");
+  if(p.id==="E011" && (n.includes("machine learning")||n.includes("classification")||n.includes("model"))) evidence.push("Classification-model evaluation and error analysis are documented.");
+  if(!evidence.length) evidence.push("Some profile terms overlap with the request; inspect the documented project details before deciding.");
+  if(!gaps.length) gaps.push("Other requirements not explicitly documented in this profile should be validated in a follow-up conversation.");
+  return {evidence,gaps};
+}
+function render(){
+  let q=document.getElementById("query").value.trim(),el=document.getElementById("results");
+  const team=document.getElementById("team-recommendation");
+  el.innerHTML=""; team.style.display="none"; team.innerHTML="";
+  if(!q){el.innerHTML='<div class="empty">Enter a requirement to discover relevant expertise.</div>';return;}
+  const nq=norm(q);
+  const exactGap=nq.includes("deploy")&&nq.includes("agent")&&nq.includes("oracle")&&nq.includes("procurement");
+  let list=P.map(p=>({...p,s:score(p,q)})).filter(p=>p.s>=8);
+  if(document.getElementById("sort").value==="seniority") list.sort((a,b)=>(b.level==="Senior")-(a.level==="Senior")||b.s-a.s);
+  else list.sort((a,b)=>b.s-a.s);
+  document.getElementById("title").textContent=exactGap?"No exact documented match":`Recommended experts (${list.length})`;
+  document.getElementById("subtitle").textContent=exactGap?"Adjacent expertise only; the exact deployment experience is not documented.":"Rule-based demo matching · Review evidence and gaps before deciding";
+  if(exactGap){
+    el.insertAdjacentHTML("beforeend",'<div class="warning"><b>Insufficient evidence for an exact match</b>No fictional profile documents deployment of an AI agent specifically for Oracle procurement. The profiles below are adjacent options, not proof of that experience.</div>');
+    list=P.filter(p=>["E001","E004","E002","E007"].includes(p.id)).map(p=>({...p,s:score(p,q)}));
+  }
+  if(!list.length){el.insertAdjacentHTML("beforeend",'<div class="empty">No relevant profile found in this sample. Try broadening the requirement.</div>');return;}
+  list.slice(0,6).forEach(p=>{
+    const eg=getEvidenceAndGap(p,q);
+    let card=document.createElement("article"); card.className="person";
+    card.innerHTML=`<div class="head"><div class="avatar">${p.name.split(" ").map(x=>x[0]).join("")}</div><div><div class="name">${p.name}</div><div class="role">${p.role} · ${p.level}</div></div><div class="score"><b>${p.s}</b><small>RULE-BASED<br>DEMO SCORE</small></div></div>
+    <div class="tags">${p.skills.slice(0,4).map(x=>`<span class="tag">${x}</span>`).join("")}</div>
+    <div class="why"><b>Documented evidence</b><ul>${eg.evidence.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    <div class="why" style="margin-top:8px"><b>Gaps to validate</b><ul>${eg.gaps.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    <details><summary>View full sample-profile evidence</summary><p><b>Project:</b> ${p.project}</p><p><b>Evidence:</b> ${p.evidence}</p><p><b>Industry:</b> ${p.industry.join(", ")}</p></details>`;
+    el.appendChild(card);
+  });
+  if((nq.includes("oracle")&&nq.includes("procurement")&&(nq.includes("ai")||nq.includes("automation"))) && !exactGap){
+    team.style.display="block";
+    team.innerHTML='<h3>Suggested complementary team · Hypothesis to validate</h3><p style="margin:4px 0 10px;font-size:12px">A single profile does not document both capabilities. Consider pairing these roles for discovery, subject to validating their experience:</p><div class="metric"><span><b>E001 · Procurement functional lead</b><br>Oracle Fusion Procurement and P2P workflow evidence</span><b>Business process</b></div><div class="metric"><span><b>E004 · AI automation specialist</b><br>LLM tools, API integration, workflow automation, human review</span><b>AI workflow</b></div><p style="font-size:11px;margin-bottom:0">This is a proposed pairing based on the synthetic profiles, not a confirmed staffing recommendation.</p>';
+  }
+}
+
+const TESTS={
+t1:{title:"T1 · Complementary team discovery",query:"We need Oracle Fusion procurement knowledge and practical AI workflow automation experience for a client workshop.",goal:"Expected: E001 is considered for procurement process expertise; E004 for AI workflow automation. The result should explain each role and the missing combined experience."},
+t2:{title:"T2 · Strict production requirement",query:"Find an expert who has personally deployed an AI agent integrated with Oracle Fusion Procurement in production, including security controls, exception handling, and measurable business benefits.",goal:"Expected: explicitly state that no profile proves the complete requirement. Do not present adjacent candidates as confirmed matches."},
+t3:{title:"T3 · Changed priorities",query:"Prioritize Oracle Fusion reporting and procurement knowledge. We also need documented AI workflow automation experience. Do not recommend anyone as having both unless the profile explicitly supports both.",goal:"Expected: consider E007 for Oracle reporting, E004 for AI workflow automation, and E001 for deeper procurement process knowledge. State that no one profile documents both capabilities."},
+t4:{title:"T4 · Unsupported deployment claim",query:"Find someone who has deployed an AI agent specifically for Oracle procurement.",goal:"Expected: say the exact deployment experience is not documented and offer adjacent profiles only with explicit caveats."},
+t5:{title:"T5 · Retail workflow automation",query:"Find someone with retail operations experience who can help design AI workflow automation with human review.",goal:"Expected: distinguish E004's documented automation/human review from E010's retail operations knowledge; consider a complementary pairing without inventing retail AI delivery."},
+t6:{title:"T6 · Ambiguous request",query:"Find someone who can help improve operations.",goal:"Expected: ask a clarifying question or state assumptions. Avoid a confident ranking from a vague request alone."}
+};
+document.querySelectorAll("[data-test]").forEach(b=>b.onclick=()=>{
+ const t=TESTS[b.dataset.test];
+ document.getElementById("query").value=t.query;
+ document.getElementById("test-details").innerHTML="<b>"+t.title+"</b><br>"+t.goal;
+ document.getElementById("query").focus();
+});
+document.getElementById("go").onclick=render;document.getElementById("sort").onchange=render;document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{document.getElementById("query").value=b.dataset.q;render()});render();
+</script></html>

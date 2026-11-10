@@ -1,0 +1,7 @@
+query_id,query,expected_relevant_ids,why
+Q01,Find someone with Oracle Fusion procurement and Procure-to-Pay process experience.,E001,Direct procurement and P2P workflow evidence.
+Q02,Find someone who has built an LLM knowledge assistant with document retrieval and source references.,E002,Direct RAG/LLM knowledge assistant project evidence.
+Q03,"Find an expert in recurring IT incidents, root cause analysis, and operational dashboards.",E003,Direct incident analysis and reporting evidence.
+Q04,Find someone with retail workflow automation and human review of AI-generated responses.,E004,Direct automation prototype and human-review evidence.
+Q05,Find a person with Oracle reporting and procurement business-process knowledge.,E007,Oracle Fusion reporting and procurement reporting evidence.
+Q06,Find someone with documented experience deploying an AI agent for Oracle procurement.,,No profile documents this exact combined deployment experience; the agent should state that evidence is insufficient and offer adjacent matches.
